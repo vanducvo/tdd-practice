@@ -9,11 +9,15 @@ describe('File DB', () => {
     const fileDB = new FileDB(dbPath);
     
     expect(fileDB).toBeInstanceOf(FileDB);
-    expect(Object.values(fileDB)).toEqual(
-      expect.arrayContaining([dbPath])
-    );
+    expectObjectContainValue(fileDB, dbPath);
   });
 });
+
+function expectObjectContainValue(fileDB, dbPath) {
+  expect(Object.values(fileDB)).toEqual(
+    expect.arrayContaining([dbPath])
+  );
+}
 
 function getDBPathFromEnviroment() {
   return process.env.DB_PATH;
